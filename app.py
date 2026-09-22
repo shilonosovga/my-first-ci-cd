@@ -5,6 +5,8 @@ import subprocess
 from flask import Flask, request
 from markupsafe import escape
 
+PING = "/bin/ping"
+
 app = Flask(__name__)
 
 
@@ -30,7 +32,7 @@ def ping():
         return "Invalid IP address", 400
 
     result = subprocess.run(
-        ["ping", "-c", "1", host],
+        [PING, "-c", "1", host],
         capture_output=True,
         check=False,
         timeout=5,
